@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mac Essen Menu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="menu.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="navbar-left">
+      <div class="logo">Mac Essen</div>
+    </div>
+    <nav class="navbar-links">
+      <a href="#" class="nav-link">Home</a>
+      <a href="#" class="nav-link active">Menu</a>
+      <a href="#" class="nav-link">About Us</a>
+      <a href="#" class="nav-link">Contact</a>
+    </nav>
+    <div class="navbar-right">
+      <button class="icon-button" aria-label="Search">🔍</button>
+      <button class="icon-button" aria-label="User account">👤</button>
+      <button class="icon-button" aria-label="Cart">🛒</button>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="menu-header">
+      <h1>Our Menu</h1>
+      <p>Explore our selection of fresh, healthy meals</p>
+      <div class="menu-filters">
+        <!-- data-filter attributes -->
+        <button class="filter-button active" data-filter="all">All Items</button>
+        <button class="filter-button" data-filter="salads">Salads</button>
+        <button class="filter-button" data-filter="burgers">Burgers</button>
+        <button class="filter-button" data-filter="bowls">Bowls</button>
+        <button class="filter-button" data-filter="pasta">Pasta</button>
+      </div>
+    </section>
+
+    <section class="menu-grid">
+      <!-- add data-category to every card -->
+      <article class="menu-card" data-category="bowls">
+        <div class="menu-card-image">
+          <img src="images_menu/chicken.jpg" alt="Grilled Chicken Bowl">
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-card-rating">
+            <span class="star">★</span>
+            <span>4.9</span>
+          </div>
+          <h2 class="menu-card-title">Grilled Chicken Bowl</h2>
+          <p class="menu-card-description">
+            Fresh mixed greens, grilled chicken breast, cherry tomatoes, avocado, and house dressing
+          </p>
+          <div class="menu-card-footer">
+            <span class="price">$12.99</span>
+            <button class="add-button">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-card" data-category="salads">
+        <div class="menu-card-image">
+          <img src="images_menu/salad.jpg" alt="Caesar Salad">
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-card-rating">
+            <span class="star">★</span>
+            <span>4.7</span>
+          </div>
+          <h2 class="menu-card-title">Caesar Salad</h2>
+          <p class="menu-card-description">
+            Crisp romaine lettuce, parmesan cheese, croutons, and classic Caesar dressing
+          </p>
+          <div class="menu-card-footer">
+            <span class="price">$9.99</span>
+            <button class="add-button">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-card" data-category="burgers">
+        <div class="menu-card-image">
+    <img src="images_menu/cburger.jpg" alt="Classic Cheeseburger">
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-card-rating">
+            <span class="star">★</span>
+            <span>4.8</span>
+          </div>
+          <h2 class="menu-card-title">Classic Cheeseburger</h2>
+          <p class="menu-card-description">
+            Juicy beef patty, melted cheese, lettuce, tomato, pickles on a sesame seed bun
+          </p>
+          <div class="menu-card-footer">
+            <span class="price">$9.99</span>
+            <button class="add-button">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-card" data-category="burgers">
+        <div class="menu-card-image">
+          <img src="images_menu/bbq.jpg" alt="BBQ Burger">
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-card-rating">
+            <span class="star">★</span>
+            <span>4.9</span>
+          </div>
+          <h2 class="menu-card-title">BBQ Burger</h2>
+          <p class="menu-card-description">
+            Beef patty,cheddar cheese, BBQ sauce, onion rings
+          </p>
+          <div class="menu-card-footer">
+            <span class="price">$11.99</span>
+            <button class="add-button">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-card" data-category="bowls">
+        <div class="menu-card-image">
+          <img src="images_menu/berry.jpg" alt="Berry Smoothie Bowl">
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-card-rating">
+            <span class="star">★</span>
+            <span>4.9</span>
+          </div>
+          <h2 class="menu-card-title">Berry Smoothie Bowl</h2>
+          <p class="menu-card-description">
+            Mixed berries, banana, granola, chia seeds, and honey drizzle
+          </p>
+          <div class="menu-card-footer">
+            <span class="price">$8.99</span>
+            <button class="add-button">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-card" data-category="bowls">
+        <div class="menu-card-image">
+          <img src="images_menu/tropical.jpg" alt="Tropical Smoothie Bowl">
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-card-rating">
+            <span class="star">★</span>
+            <span>4.8</span>
+          </div>
+          <h2 class="menu-card-title">Tropical Smoothie Bowl</h2>
+          <p class="menu-card-description">
+            Mango, pineapple, coconut, fresh fruits, and toasted coconut flakes
+          </p>
+          <div class="menu-card-footer">
+            <span class="price">$9.99</span>
+            <button class="add-button">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-card" data-category="pasta">
+        <div class="menu-card-image">
+          <img src="images_menu/carbonara.jpg" alt="Spaghetti Carbonara">
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-card-rating">
+            <span class="star">★</span>
+            <span>4.9</span>
+          </div>
+          <h2 class="menu-card-title">Spaghetti Carbonara</h2>
+          <p class="menu-card-description">
+            Fresh pasta, crispy bacon, parmesan cheese, egg yolk, black pepper
+          </p>
+          <div class="menu-card-footer">
+            <span class="price">$11.99</span>
+            <button class="add-button">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-card" data-category="pasta">
+        <div class="menu-card-image">
+          <img src="images_menu/pasta.jpg" alt="Tomato Basil Pasta">
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-card-rating">
+            <span class="star">★</span>
+            <span>4.8</span>
+          </div>
+          <h2 class="menu-card-title">Tomato Basil Pasta</h2>
+          <p class="menu-card-description">
+            Fresh tomatoes, basil leaves, garlic, olive oil, parmesan cheese
+          </p>
+          <div class="menu-card-footer">
+            <span class="price">$10.99</span>
+            <button class="add-button">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <!-- filtering script -->
+  <script>
+    const filterButtons = document.querySelectorAll(".filter-button")
+    const cards = document.querySelectorAll(".menu-card")
+
+    filterButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const filter = button.dataset.filter
+
+        filterButtons.forEach(b => b.classList.remove("active"))
+        button.classList.add("active")
+
+        cards.forEach(card => {
+          const category = card.dataset.category
+          if (filter === "all" || category === filter) {
+            card.style.display = "flex"
+          } else {
+            card.style.display = "none"
+          }
+        })
+      })
+    })
+  </script>
+</body>
+</html>
