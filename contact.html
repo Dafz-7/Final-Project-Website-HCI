@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Macessen — Contact Us</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="site-header">
+    <div class="container header-wrap">
+    <div class="logo">Macessen</div>
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About Us</a>
+        <a class="active" href="contact.html">Contact</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+    </div>
+</header>
+
+<main>
+    <section class="hero hero-compact">
+    <div class="container">
+        <h1>Contact us</h1>
+        <p class="subhead">Have a question or feedback? We'd love to hear from you!</p>
+    </div>
+    </section>
+
+    <section class="container content contact-grid">
+    <div class="contact-details card">
+        <h2>Get in touch</h2>
+        <ul class="list">
+        <li>
+            <strong>Location:</strong> Jl.Kayumanis IV baru Gang kapuk 3, Jakarta Timur
+        </li>
+        <li>
+            <strong>Phone:</strong> +62 858-9432-0216
+        </li>
+        <li>
+            <strong>Instagram:</strong> @mac_essen
+        </li>
+        <li>
+            <strong>Hours:</strong> Monday - Sunday: 12.00 AM - 10.00 PM
+        </li>
+        </ul>
+    </div>
+
+    <form id="contactForm" class="contact-form card" novalidate>
+        <div class="form-row">
+        <label for="name">Name*</label>
+        <input type="text" id="name" name="name" required placeholder="Your name" />
+        <small class="error" data-error-for="name"></small>
+        </div>
+
+        <div class="form-row">
+        <label for="email">Email*</label>
+        <input type="email" id="email" name="email" required placeholder="Username@gmail.com" />
+        <small class="error" data-error-for="email"></small>
+        </div>
+
+        <div class="form-row">
+        <label for="subject">Subject*</label>
+        <input type="text" id="subject" name="subject" required placeholder="How can we help?" />
+        <small class="error" data-error-for="subject"></small>
+        </div>
+
+        <div class="form-row">
+        <label for="message">Message*</label>
+        <textarea id="message" name="message" rows="6" required placeholder="Tell us more about your inquiry"></textarea>
+        <small class="error" data-error-for="message"></small>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Send message</button>
+        <p class="form-status" role="status" aria-live="polite"></p>
+    </form>
+    </section>
+
+    <section class="container map-wrap">
+    <div class="map-placeholder card" id="map">
+        <div class="map-text">
+        Interactive map would be displayed here<br />
+        (Map integration coming soon!)
+        </div>
+    </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-wrap">
+    <div>© 2021 Macessen</div>
+    <div class="footer-links">
+    </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
