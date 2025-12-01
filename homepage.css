@@ -1,0 +1,317 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #fff;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Navbar: fixed to top */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.logo {
+  font-size: 1.6rem;
+  color: #2ecc71;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #2ecc71;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  color: white;
+  text-align: center;
+  overflow: hidden;
+  margin-top: 70px; /* offset for fixed navbar */
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('images/hero-image.png') center/cover no-repeat;
+  filter: blur(6px);
+  z-index: 1;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 600px;
+  padding: 2rem;
+}
+
+.hero-content h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.hero-buttons button {
+  padding: 0.7rem 1.4rem;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: background 0.3s ease;
+}
+
+.hero-buttons button:first-child {
+  background: #2ecc71;
+  color: white;
+}
+
+.hero-buttons button:first-child:hover {
+  background: #27ae60;
+}
+
+.hero-buttons .signup {
+  background: white;
+  color: #2ecc71;
+}
+
+.hero-buttons .signup:hover {
+  background: #f0f0f0;
+}
+
+.signup {
+  background: white;
+  color: #2ecc71;
+}
+
+.signup:hover {
+  background: #f0f0f0;
+}
+
+/* Features Section */
+.features {
+  display: flex;
+  justify-content: space-around;
+  padding: 3rem 2rem;
+  background: #f9f9f9;
+  text-align: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.feature {
+  flex: 1;
+  min-width: 200px;
+  max-width: 300px;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-5px);
+}
+
+.feature img {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 1rem;
+}
+
+.feature h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  color: #2ecc71;
+}
+
+/* Best Sellers */
+.best-sellers {
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.best-sellers h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.dish-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.dish-card {
+  width: 250px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.dish-card:hover {
+  transform: translateY(-5px);
+}
+
+.dish-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.dish-card h3 {
+  margin: 1rem 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+.dish-card p {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.dish-card button {
+  background: #2ecc71;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.dish-card button:hover {
+  background: #27ae60;
+}
+
+.view-menu {
+  margin-top: 2rem;
+  padding: 0.6rem 1.2rem;
+  background: #333;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* CTA Section */
+.cta {
+  background: linear-gradient(to right, #2ecc71, #f39c12);
+  color: white;
+  text-align: center;
+  padding: 3rem 2rem;
+  border-radius: 12px;
+  margin: 3rem 2rem;
+}
+
+.cta h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.cta p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.cta button {
+  padding: 0.6rem 1.2rem;
+  background: white;
+  color: #2ecc71;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.cta button:hover {
+  background: #f0f0f0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .features {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .dish-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero {
+    height: auto;
+    padding: 4rem 2rem;
+  }
+
+  .hero-content {
+    background: rgba(0,0,0,0.6);
+  }
+}
