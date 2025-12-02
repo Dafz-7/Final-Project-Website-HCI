@@ -62,7 +62,9 @@ text-decoration: none; color: var(--text);
 padding: 8px 12px; border-radius: 8px;
 }
 .nav a:hover { background: var(--surface); }
-.nav a.active { color: var(--primary-dark); font-weight: 600; }
+.nav a.active {
+    color: #22c55e;
+    font-weight: 600;}
 .nav-toggle { display: none; background: none; border: none; font-size: 1.25rem; }
 
 .hero { padding: 56px 0 22px; background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%); }
