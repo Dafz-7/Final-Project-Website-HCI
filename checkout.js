@@ -1,193 +1,142 @@
-// Cart data
-let cartItems = [
-  {
-    id: 1,
-    name: "Grilled Chicken Bowl",
-    unitPrice: 12.98,
-    quantity: 2,
-    image: "https://placehold.co/140x140?text=Grilled+chicken+bowl+with+fresh+vegetables+on+white+plate",
-  },
-  {
-    id: 2,
-    name: "Classic Burger",
-    unitPrice: 8.98,
-    quantity: 1,
-    image: "https://placehold.co/140x140?text=Classic+burger+with+lettuce+tomato+cheese+and+beef+patty",
-  },
-]
-
-const deliveryFee = 2.99
-const taxRate = 0.1
-
-// Initialize
+// checkout.js
 document.addEventListener("DOMContentLoaded", () => {
-  renderCartItems()
-  updateOrderSummary()
-  updateCartBadge() // Update cart badge on page load
-  setupEventListeners()
-})
+  const cartItemsContainer = document.getElementById("cartItems");
+  const subtotalEl = document.getElementById("subtotal");
+  const taxEl = document.getElementById("tax");
+  const deliveryEl = document.getElementById("delivery");
+  const totalEl = document.getElementById("total");
+  const placeOrderBtn = document.getElementById("placeOrderBtn");
 
-// Render cart items
-function renderCartItems() {
-  const cartContainer = document.getElementById("cartItems")
-  cartContainer.innerHTML = ""
+  let cart = getCart(); // comes from cart.js
 
-  cartItems.forEach((item) => {
-    const cartItemEl = document.createElement("div")
-    cartItemEl.className = "cart-item"
-    const itemTotal = item.unitPrice * item.quantity
-    cartItemEl.innerHTML = `
-            <img src="${item.image}" alt="${item.name}" class="item-image">
-            <div class="item-details">
-                <div class="item-name">${item.name}</div>
-                <div class="item-price">$${itemTotal.toFixed(2)}</div>
-            </div>
-            <div class="quantity-controls">
-                <button class="quantity-btn" onclick="decreaseQuantity(${item.id})">-</button>
-                <span class="quantity-value">${item.quantity}</span>
-                <button class="quantity-btn" onclick="increaseQuantity(${item.id})">+</button>
-            </div>
-            <button class="delete-btn" onclick="removeItem(${item.id})">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="3 6 5 6 21 6"></polyline>
-                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                </svg>
-            </button>
-        `
-    cartContainer.appendChild(cartItemEl)
-  })
-}
+  function renderCart() {
+    cartItemsContainer.innerHTML = "";
 
-// Increase quantity
-function increaseQuantity(itemId) {
-  const item = cartItems.find((i) => i.id === itemId)
-  if (item) {
-    item.quantity++
-    renderCartItems()
-    updateOrderSummary()
-    updateCartBadge() // Update cart badge when quantity increases
-  }
-}
+    if (cart.length === 0) {
+      cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
+    } else {
+      cart.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.classList.add("cart-item");
+        div.dataset.index = index; // store index for removeFromCart
 
-// Decrease quantity
-function decreaseQuantity(itemId) {
-  const item = cartItems.find((i) => i.id === itemId)
-  if (item && item.quantity > 1) {
-    item.quantity--
-    renderCartItems()
-    updateOrderSummary()
-    updateCartBadge() // Update cart badge when quantity decreases
-  }
-}
+        div.innerHTML = `
+          <img src="${item.image}" alt="${item.title}" class="item-image" />
+          <div class="item-details">
+            <div class="item-name">${item.title}</div>
+            <div class="item-price">${item.price}</div>
+          </div>
+          <div class="quantity-controls">
+            <button class="quantity-btn minus-btn">-</button>
+            <span class="quantity-value">${item.quantity || 1}</span>
+            <button class="quantity-btn plus-btn">+</button>
+          </div>
+          <button class="delete-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+              <polyline points="3 6 5 6 21 6"></polyline>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6
+                      m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            </svg>
+          </button>
+        `;
 
-// Remove item
-function removeItem(itemId) {
-  cartItems = cartItems.filter((i) => i.id !== itemId)
-  renderCartItems()
-  updateOrderSummary()
-  updateCartBadge()
-}
+        // Plus button
+        div.querySelector(".plus-btn").addEventListener("click", () => {
+          item.quantity = (item.quantity || 1) + 1;
+          saveCart(cart);
+          renderCart();
+        });
 
-// Update order summary
-function updateOrderSummary() {
-  const subtotal = cartItems.reduce((sum, item) => sum + item.unitPrice * item.quantity, 0)
-  const tax = subtotal * taxRate
-  const total = subtotal + tax + deliveryFee
+        // Minus button
+        div.querySelector(".minus-btn").addEventListener("click", () => {
+          if ((item.quantity || 1) > 1) {
+            item.quantity -= 1;
+            saveCart(cart);
+            renderCart();
+          } else {
+            removeFromCart(index); // centralized remove + toast
+            cart = getCart();
+            renderCart();
+          }
+        });
 
-  document.getElementById("subtotal").textContent = `$${subtotal.toFixed(2)}`
-  document.getElementById("tax").textContent = `$${tax.toFixed(2)}`
-  document.getElementById("delivery").textContent = `$${deliveryFee.toFixed(2)}`
-  document.getElementById("total").textContent = `$${total.toFixed(2)}`
-}
+        // Delete button
+        div.querySelector(".delete-btn").addEventListener("click", () => {
+          removeFromCart(index); // centralized remove + toast
+          cart = getCart();
+          renderCart();
+        });
 
-// Update cart badge
-function updateCartBadge() {
-  const badge = document.querySelector(".cart-badge")
-  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0)
-  badge.textContent = totalItems
-}
-
-function showToast(message, type = "success") {
-  const toast = document.getElementById("toast")
-  const toastMessage = document.getElementById("toastMessage")
-  const successIcon = document.getElementById("toastSuccessIcon")
-  const errorIcon = document.getElementById("toastErrorIcon")
-
-  toastMessage.textContent = message
-
-  // Show appropriate icon based on type
-  if (type === "success") {
-    successIcon.classList.add("active")
-    errorIcon.classList.remove("active")
-  } else if (type === "error") {
-    errorIcon.classList.add("active")
-    successIcon.classList.remove("active")
-  }
-
-  toast.classList.add("show")
-
-  setTimeout(() => {
-    toast.classList.remove("show")
-  }, 1500)
-}
-
-// Setup event listeners
-function setupEventListeners() {
-  // Payment method toggle
-  const paymentOptions = document.querySelectorAll('input[name="payment"]')
-  const cardDetails = document.getElementById("cardDetails")
-
-  paymentOptions.forEach((option) => {
-    option.addEventListener("change", (e) => {
-      if (e.target.value === "card") {
-        cardDetails.classList.remove("hidden")
-      } else {
-        cardDetails.classList.add("hidden")
-      }
-    })
-  })
-
-  // Card number formatting
-  const cardNumberInput = document.getElementById("cardNumber")
-  cardNumberInput.addEventListener("input", (e) => {
-    const value = e.target.value.replace(/\s/g, "")
-    const formattedValue = value.match(/.{1,4}/g)?.join(" ") || value
-    e.target.value = formattedValue
-  })
-
-  // Expiry date formatting
-  const expiryDateInput = document.getElementById("expiryDate")
-  expiryDateInput.addEventListener("input", (e) => {
-    let value = e.target.value.replace(/\D/g, "")
-    if (value.length >= 2) {
-      value = value.slice(0, 2) + "/" + value.slice(2, 4)
+        cartItemsContainer.appendChild(div);
+      });
     }
-    e.target.value = value
-  })
 
-  // CVV number only
-  const cvvInput = document.getElementById("cvv")
-  cvvInput.addEventListener("input", (e) => {
-    e.target.value = e.target.value.replace(/\D/g, "")
-  })
+    updateCartBadge(cart);
+    updateSummary();
+  }
+
+  function updateSummary() {
+    let subtotal = 0;
+    cart.forEach(item => {
+      const price = parseFloat(item.price.replace("$", ""));
+      subtotal += price * (item.quantity || 1);
+    });
+
+    const tax = subtotal * 0.1;
+    const delivery = cart.length > 0 ? 2.99 : 0;
+    const total = subtotal + tax + delivery;
+
+    subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+    taxEl.textContent = `$${tax.toFixed(2)}`;
+    deliveryEl.textContent = `$${delivery.toFixed(2)}`;
+    totalEl.textContent = `$${total.toFixed(2)}`;
+  }
 
   // Place order button
-  const placeOrderBtn = document.getElementById("placeOrderBtn")
   placeOrderBtn.addEventListener("click", () => {
-    const paymentMethod = document.querySelector('input[name="payment"]:checked').value
+    if (cart.length === 0) {
+      showToast("Your cart is empty!", false);
+      return;
+    }
 
+    const paymentMethod = document.querySelector("input[name='payment']:checked").value;
     if (paymentMethod === "card") {
-      const cardNumber = document.getElementById("cardNumber").value
-      const expiryDate = document.getElementById("expiryDate").value
-      const cvv = document.getElementById("cvv").value
+      const cardNumber = document.getElementById("cardNumber").value.trim();
+      const expiryDate = document.getElementById("expiryDate").value.trim();
+      const cvv = document.getElementById("cvv").value.trim();
 
+      // Empty check
       if (!cardNumber || !expiryDate || !cvv) {
-        showToast("Please fill in all card details", "error")
-        return
+        showToast("Please complete card details!", false);
+        return;
+      }
+
+      // Card number: must be 16 digits
+      if (!/^\d{16}$/.test(cardNumber.replace(/\s+/g, ""))) {
+        showToast("Invalid card number!", false);
+        return;
+      }
+
+      // Expiry date: MM/YY format, valid month 01–12
+      if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryDate)) {
+        showToast("Invalid expiry date format (MM/YY)!", false);
+        return;
+      }
+
+      // CVV: must be 3 digits
+      if (!/^\d{3}$/.test(cvv)) {
+        showToast("Invalid CVV!", false);
+        return;
       }
     }
 
-    showToast("Order placed successfully!", "success")
-    // In a real app, you would send the order to the backend here
-  })
-}
+    // Success
+    showToast("Order placed successfully!", true);
+    clearCart();
+    cart = getCart();
+    renderCart();
+  });
+
+  renderCart();
+});
