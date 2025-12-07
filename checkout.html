@@ -12,14 +12,13 @@
       <div class="container header-content">
         <div class="logo">Macessen</div>
         <nav class="nav">
-          <a href="homepage.html" class="nav-link">Home</a>
+          <a href="index.html" class="nav-link">Home</a>
           <a href="menu.html" class="nav-link">Menu</a>
-          <a href="checkout.html" class="nav-link">Checkout</a>
           <a href="about.html" class="nav-link">About Us</a>
           <a href="contact.html" class="nav-link">Contact</a>
         </nav>
         <div class="header-icons">
-          <div class="cart-icon">
+          <a href="checkout.html" class="cart-icon active">
             <svg
               width="24"
               height="24"
@@ -34,9 +33,9 @@
                 d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
               ></path>
             </svg>
-            <span class="cart-badge">1</span>
-          </div>
-          <div class="user-icon">
+            <span class="cart-badge"></span>
+          </a>
+          <a href="signup.html" class="user-icon">
             <svg
               width="24"
               height="24"
@@ -48,14 +47,14 @@
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
-          </div>
+          </a>
         </div>
       </div>
     </header>
 
     <!-- Main Content -->
     <main class="container main-content">
-      <h1 class="page-title">Checkout</h1>
+      <h1 class="page-title">Checkout your orders here!</h1>
 
       <div class="checkout-grid">
         <!-- Left Column -->
@@ -196,6 +195,7 @@
       </div>
     </div>
 
+    <script src="cart.js"></script>
     <script src="checkout.js"></script>
   </body>
 </html>

@@ -50,11 +50,26 @@ body {
   color: #666;
   font-size: 15px;
   font-weight: 500;
-  transition: color 0.3s;
+  transition: color 0.3s, border-color 0.3s;
+  
+  /* Reserve space for border */
+  border-style: solid;
+  border-width: 3px;
+  border-color: transparent;   /* invisible by default */
+  border-radius: 6px;
+  padding: 0px 4px;             /* consistent padding */
+  margin: 0;                    /* avoid negative margins */
 }
 
 .nav-link:hover {
+  border-color: #7cb342;
+  border-width: 2px;
+}
+
+.nav-link.active {
   color: #7cb342;
+  font-weight: 700;
+  border-color: #7cb342;        /* highlight border */
 }
 
 .header-icons {
@@ -63,17 +78,62 @@ body {
   align-items: center;
 }
 
-.cart-icon,
 .user-icon {
   position: relative;
   cursor: pointer;
   color: #666;
   transition: color 0.3s;
+  text-decoration: none;
+  color: #666;
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.3s, border-color 0.3s;
+  
+  /* Reserve space for border */
+  border-style: solid;
+  border-width: 3px;
+  border-color: transparent;   /* invisible by default */
+  border-radius: 6px;
+  padding: 6px 4px 0px 4px;             /* consistent padding */
+  margin: 0; 
 }
 
 .cart-icon:hover,
 .user-icon:hover {
+  border-color: #7cb342;
+  border-width: 2px;
+}
+
+.cart-icon {
+  position: relative;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.3s;
+  text-decoration: none;
+  color: #666;
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.3s, border-color 0.3s;
+  
+  /* Reserve space for border */
+  border-style: solid;
+  border-width: 3px;
+  border-color: transparent;   /* invisible by default */
+  border-radius: 6px;
+  padding: 6px 7px 0px 4px;             /* consistent padding */
+  margin: 0; 
+}
+
+.cart-icon:hover,
+.user-icon:hover {
+  border-color: #7cb342;
+  border-width: 2px;
+}
+
+.cart-icon.active,
+.user-icon.active {
   color: #7cb342;
+  border-color: #7cb342;
 }
 
 .cart-badge {
@@ -202,14 +262,6 @@ body {
 
 .delete-btn:hover {
   opacity: 0.7;
-}
-
-/* Payment Method */
-.payment-method {
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .payment-options {
@@ -366,19 +418,25 @@ body {
 }
 
 /*Toast notification styles */
-.toast {
+.toast-container {
   position: fixed;
   top: 20px;
   right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* spacing between stacked toasts */
+}
+
+.toast {
   background-color: #2c2c2c;
   color: white;
   padding: 16px 24px;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transform: translateX(400px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   opacity: 0;
-  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  z-index: 1000;
+  transform: translateX(400px);
+  transition: all 0.4s cubic-bezier(0.68,-0.55,0.265,1.55);
 }
 
 .toast.show {
@@ -392,30 +450,12 @@ body {
   gap: 12px;
 }
 
-.toast-icon {
-  flex-shrink: 0;
-  display: none; /* Hidden by default */
-}
+.toast-icon { display: none; }
+.toast-icon.active { display: block; }
 
-.toast-icon.active {
-  /* To show the icon */
-  display: block;
-}
-
-.toast-success {
-  /* For success icons */
-  color: #7cb342;
-}
-
-.toast-error {
-  /* For error icons */
-  color: #e53935;
-}
-
-.toast-message {
-  font-size: 15px;
-  font-weight: 500;
-}
+.toast-success { color: #7cb342; }
+.toast-error { color: #e53935; }
+.toast-message { font-size: 15px; font-weight: 500; }
 
 /* Responsive */
 @media (max-width: 968px) {
