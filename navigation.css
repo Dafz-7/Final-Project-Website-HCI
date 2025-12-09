@@ -1,0 +1,87 @@
+/* --- MOBILE SIDENAV --- */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  border-radius: 3px;
+}
+
+/* Sidenav container */
+.sidenav {
+  position: fixed;
+  top: 0;
+  left: -260px;
+  width: 260px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  transition: left 0.3s ease;
+  z-index: 1200;
+}
+
+.sidenav.active {
+  left: 0;
+}
+
+.sidenav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.sidenav-header .close-btn {
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.sidenav a {
+  display: block;
+  padding: 12px 0;
+  font-size: 17px;
+  color: #333;
+  text-decoration: none;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.sidenav a:hover {
+  color: #7cb342;
+}
+
+/* Background overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1100;
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Show hamburger only on mobile */
+@media (max-width: 968px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav{
+    display: none;
+  }
+}

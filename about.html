@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Macessen — About</title>
   <link rel="stylesheet" href="about-and-contact.css" />
+  <link rel="stylesheet" href="navigation.css">
 </head>
 <body>
   <!-- Navbar -->
@@ -17,6 +18,31 @@
         <a href="about.html" class="nav-link active">About Us</a>
         <a href="contact.html" class="nav-link">Contact</a>
       </nav>
+
+        <div class="hamburger" id="hamburgerBtn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <!-- Mobile Sidenav -->
+        <div class="sidenav" id="sidenav">
+          <div class="sidenav-header">
+            <span class="close-btn" id="closeSidenav">&times;</span>
+            <h2>Menu</h2>
+          </div>
+          <a href="index.html">Home</a>
+          <a href="menu.html">Menu</a>
+          <a href="about.html">About Us</a>
+          <a href="contact.html">Contact</a>
+          <hr />
+          <a href="checkout.html">Cart</a>
+          <a href="signup.html">Account</a>
+        </div>
+
+        <!-- Sidenav Overlay (dark background) -->
+        <div class="overlay" id="overlay"></div>
+
+        
       <div class="header-icons">
         <a href="checkout.html" class="cart-icon">
           <svg
@@ -152,5 +178,6 @@
 
   <script src="cart.js"></script>
   <script src="about-and-contact.js"></script>
+  <script src="navigation.js"></script>
 </body>
 </html>

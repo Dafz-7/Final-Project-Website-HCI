@@ -417,6 +417,7 @@ section {
 }
 
 /* Toast notification styles */
+/*Toast notification styles */
 .toast-container {
   position: fixed;
   top: 20px;
@@ -434,12 +435,12 @@ section {
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   opacity: 0;
-  transform: translateX(400px);
+  transform: translateX(0);
   transition: all 0.4s cubic-bezier(0.68,-0.55,0.265,1.55);
 }
 
 .toast.show {
-  transform: translateX(0);
+  transform: translateX(-15px);
   opacity: 1;
 }
 
